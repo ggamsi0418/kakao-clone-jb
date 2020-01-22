@@ -11,3 +11,31 @@
   opacity: 0.6px;
   margin-bottom: 12px;
 }
+
+.friends__friend {
+  margin-bottom: 15px;
+}
+
+.friends-body {
+  min-height: 120vh;
+}
+
+@keyframes avatarTrun {
+  25% {
+    transform: rotateY(180deg);
+  }
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: none;
+  }
+}
+
+.friend--lg:hover img {
+  animation: avatarTrun 2s ease-in-out infinite;
+}
+
+.friend--lg {
+  cursor: pointer;
+}

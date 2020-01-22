@@ -25,7 +25,7 @@
 .chats-body {
   background-image: url(../imgs/chatBg.png);
   /* chat 클래스가 적용된 div에  viewport의 100% 높이를 준다. */
-  min-height: 1000vh;
+  min-height: 150vh;
 }
 
 .chat__write--container {
@@ -239,4 +239,8 @@ sibling(~, 형제자메)의 효과를 볼 수 있었다. */
 
 .sent-message {
   animation: sentAnimation 0.5s ease-out forwards;
+}
+
+.chats__list .chats__chat {
+  margin-top: 12px;
 }

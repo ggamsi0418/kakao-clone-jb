@@ -37,3 +37,22 @@
   opacity: 0.7;
   margin-bottom: 20px;
 }
+
+@keyframes adding {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+.friend__add-btn {
+  background-color: #fce006;
+}
+
+.friend__add-btn:hover {
+  animation: adding 0.4s ease-in-out forwards;
+}
