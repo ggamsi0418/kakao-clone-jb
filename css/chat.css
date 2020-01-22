@@ -1,0 +1,242 @@
+.header-wrapper {
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  width: 100%;
+  padding: 5px 0px;
+  background-color: white;
+  box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.3),
+    0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+}
+
+/* body에 클래스를 추가한 이유는 padding을 없애주기 위해서이다. 
+   body는 기본값을 padding을 가지고 있는데 이는 background를 적용할 때 문제가 되기 때문*/
+.chats-body {
+  padding: 10px 0px;
+  padding-top: 100px;
+}
+
+/* 이 부분에서 padding 다시 적용 */
+.chats-body .header,
+.chats-body .status-bar {
+  padding: 0px 20px;
+}
+
+.chats-body {
+  background-image: url(../imgs/chatBg.png);
+  /* chat 클래스가 적용된 div에  viewport의 100% 높이를 준다. */
+  min-height: 1000vh;
+}
+
+.chat__write--container {
+  position: fixed;
+  bottom: 0;
+  /* fixed가 적용된 container에 가운데 정렬하고 적용하는 방법 */
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.chat__icon-left {
+  position: absolute;
+  left: 10px;
+}
+.chat__icon-right {
+  position: absolute;
+  right: 10px;
+}
+
+@keyframes float {
+  0% {
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+  50% {
+    box-shadow: 0 30px 60px -60px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+  100% {
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+}
+
+.chat__write {
+  margin: 0 auto;
+  bottom: 0px;
+  width: 100%;
+  border-radius: 0;
+  padding: 20px 60px;
+  width: 100%;
+  border: none;
+  font-size: 14px;
+  transition: width 0.5s ease-in-out, border-radius 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+}
+
+.chat__write:focus {
+  outline: none;
+  /* margin: 0 auto; 에서 width로 바꾼 이유는
+  margin을 animate 할 수 없기 때문이다.
+  그래서 jump하는 현상이 나타났던 것. */
+  width: 80%;
+  transform: translateY(-100px);
+  border-radius: 40px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  animation: float 3s linear infinite forwards;
+}
+
+.chat__icon {
+  font-size: 18px;
+  /* 해당 아이콘들이 반드시 HTML에서
+     input보다 앞에 있어야
+     아래와 같은 transition이 가능. */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* div로 감싸진 icon들을 input 뒤에 위치시킴으로써
+sibling(~, 형제자메)의 효과를 볼 수 있었다. */
+.chat__write:focus ~ .chat__icon {
+  /* 만약 display: none; 으로 아이콘들을 감췄다면
+    다른 애니메이션을 추가할 방법이 없다.
+    그래서 투명도를 0으로 설정했다.*/
+  opacity: 0;
+}
+
+.chat__write i {
+  font-size: 22px;
+}
+
+.chat__write-column:nth-child(2) {
+  width: 80%;
+}
+
+.chat-screen .chat__messages {
+  border-top: 1px solid #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 20px;
+  padding-top: 30px;
+}
+
+.chat__messages .chat__timestamp {
+  background-color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px -8px,
+    rgba(0, 0, 0, 0.024) 0px -6px 16px -6px;
+  /*모든 문자를 대문자로 만들어 준다.  */
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  /* width: 50%; */
+  margin-bottom: 20px;
+}
+
+/* .message .message__content {
+  width: 80%;
+} */
+
+.incoming-message {
+  align-self: flex-start;
+}
+
+.sent-message {
+  align-self: flex-end;
+}
+
+@keyframes spin {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotateY(1turn);
+  }
+}
+
+.incoming-message img {
+  width: 30px;
+  border-radius: 15px;
+  margin-right: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0 18px 16px -8px, rgba(0, 0, 0, 0.024) 0 -6px 16px -6px;
+  animation: spin 1s linear infinite;
+}
+
+/* 메시지 박스에 왜 그림자 효과가 적용이 안됐을까.. 
+창을 작게 만드니까 되네?...*/
+.message .message__bubble {
+  background-color: white;
+  display: block;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0 18px 16px -8px, rgba(0, 0, 0, 0.024) 0 -6px 16px -6px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  /* span을 box로 인식시키기 위함? */
+  color: white;
+  font-weight: 600;
+}
+
+.incoming-message .message__author {
+  margin-top: 10px;
+  display: block;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.incoming-message .message__bubble {
+  border-bottom-left-radius: 0px;
+  background-image: linear-gradient(to right, #ed4264, #ffedbc);
+}
+
+.sent-message .message__bubble {
+  border-bottom-right-radius: 0px;
+  background-image: linear-gradient(to left, #085078, #85d8ce);
+}
+
+@keyframes incomingAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: noee;
+  }
+}
+
+.incoming-message {
+  /* foward의 의미는 애니메이션이 끝난 후에도 value를 유지하는 것이다. */
+  animation: incomingAnimation 0.5s ease-out forwards;
+}
+
+@keyframes sentAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: noee;
+  }
+}
+
+.sent-message {
+  animation: sentAnimation 0.5s ease-out forwards;
+}
